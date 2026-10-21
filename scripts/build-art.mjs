@@ -231,13 +231,13 @@ function aboutRow(label, parts, y, delay) {
 function about() {
   const rows = [
     aboutRow("がっこう", [["工学院大学", C.night], ["の学生です", C.ink]], 72, 0.2),
-    aboutRow("しごと", [["株式会社Zequt", C.night], ["でWebアプリを作っています", C.ink]], 164, 0.5),
+    aboutRow("しごと", [["株式会社Zequt", C.night], ["でWeb開発をしています", C.ink]], 164, 0.5),
     aboutRow("はじまり", [["動画編集", C.night], ["からものづくりを始めました", C.ink]], 256, 0.8),
   ];
   const W = Math.ceil(Math.max(...rows.map((r) => r.width)) + 30);
   const H = 296;
   const body = `<g transform="rotate(-1 ${W / 2} ${H / 2})">${rows.map((r) => r.svg).join("")}</g>`;
-  return svgDoc(W, H, "工学院大学の学生です。株式会社ZequtでWebアプリを作っています。動画編集からものづくりを始めました。", body);
+  return svgDoc(W, H, "工学院大学の学生です。株式会社ZequtでWeb開発をしています。動画編集からものづくりを始めました。", body);
 }
 
 const out = (name) => new URL(`../assets/${name}`, import.meta.url);

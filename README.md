@@ -6,7 +6,7 @@
 <img src="assets/heading-about.svg" alt="About Me" height="64">
 
 <p align="center">
-  <img src="assets/about.svg" alt="工学院大学の学生です。株式会社ZequtでWebアプリを作っています。動画編集からものづくりを始めました。" width="92%">
+  <img src="assets/about.svg" alt="工学院大学の学生です。株式会社ZequtでWeb開発をしています。動画編集からものづくりを始めました。" width="90%">
 </p>
 
 <img src="assets/heading-stack.svg" alt="Tech Stack" height="64">
