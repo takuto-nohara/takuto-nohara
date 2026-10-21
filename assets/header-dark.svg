@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="840" height="340" viewBox="0 0 840 340" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="380" viewBox="0 0 720 380" role="img" aria-labelledby="title desc">
   <title id="title">野原 拓人（Takuto Nohara）</title>
   <desc id="desc">Webエンジニアをめざす大学生。工学院大学 / 株式会社Zequt。モットー：欲しいものが見当たらないなら、自分で作る。</desc>
   <style>
@@ -16,32 +16,33 @@
   </style>
   <defs>
     <clipPath id="c1"><rect class="type" x="56" y="78" width="150" height="34"/></clipPath>
-    <clipPath id="c2"><rect class="type t2" x="56" y="232" width="240" height="34"/></clipPath>
+    <clipPath id="c2"><rect class="type t2" x="56" y="268" width="240" height="34"/></clipPath>
   </defs>
 
-  <rect width="840" height="340" fill="#0d1117"/>
-  <rect x="8" y="8" width="824" height="324" rx="12" fill="#161b22" stroke="#30363d"/>
-  <path d="M8 20a12 12 0 0 1 12-12h800a12 12 0 0 1 12 12v24H8z" fill="#21262d"/>
-  <line x1="8" y1="44" x2="832" y2="44" stroke="#30363d"/>
+  <rect width="720" height="380" fill="#0d1117"/>
+  <rect x="8" y="8" width="704" height="364" rx="12" fill="#161b22" stroke="#30363d"/>
+  <path d="M8 20a12 12 0 0 1 12-12h680a12 12 0 0 1 12 12v24H8z" fill="#21262d"/>
+  <line x1="8" y1="44" x2="712" y2="44" stroke="#30363d"/>
   <circle cx="32" cy="26" r="6" fill="#ff5f57"/>
   <circle cx="52" cy="26" r="6" fill="#febc2e"/>
   <circle cx="72" cy="26" r="6" fill="#28c840"/>
-  <text x="420" y="31" text-anchor="middle" class="mono" font-size="14" fill="#b1bac4">takuto-nohara — profile</text>
+  <text x="360" y="31" text-anchor="middle" class="mono" font-size="14" fill="#b1bac4">takuto-nohara — profile</text>
 
   <g clip-path="url(#c1)">
     <text x="56" y="104" class="mono" font-size="22"><tspan fill="#3fb950" font-weight="700">$</tspan><tspan fill="#f0f6fc"> whoami</tspan></text>
   </g>
   <g class="fade d1">
-    <text x="56" y="164" class="sans" font-size="46" font-weight="700" fill="#f0f6fc">野原 拓人<tspan dx="20" class="mono" font-size="26" font-weight="400" fill="#b1bac4">Takuto Nohara</tspan></text>
+    <text x="56" y="168" class="sans" font-size="50" font-weight="700" fill="#f0f6fc">野原 拓人<tspan dx="20" class="mono" font-size="26" font-weight="400" fill="#b1bac4">Takuto Nohara</tspan></text>
   </g>
   <g class="fade d2">
-    <text x="56" y="208" class="sans" font-size="22" fill="#f0f6fc">Webエンジニアをめざす大学生<tspan fill="#b1bac4">　｜　工学院大学 / 株式会社Zequt</tspan></text>
+    <text x="56" y="210" class="sans" font-size="24" fill="#f0f6fc">Webエンジニアをめざす大学生</text>
+    <text x="56" y="244" class="sans" font-size="20" fill="#b1bac4">工学院大学 / 株式会社Zequt</text>
   </g>
 
   <g clip-path="url(#c2)">
-    <text x="56" y="258" class="mono" font-size="22"><tspan fill="#3fb950" font-weight="700">$</tspan><tspan fill="#f0f6fc"> cat motto.txt</tspan></text>
+    <text x="56" y="294" class="mono" font-size="22"><tspan fill="#3fb950" font-weight="700">$</tspan><tspan fill="#f0f6fc"> cat motto.txt</tspan></text>
   </g>
   <g class="fade d3">
-    <text x="56" y="302" class="sans" font-size="24" font-weight="700" fill="#ffa657">欲しいものが見当たらないなら、自分で作る。<tspan class="cursor" fill="#3fb950"> ▍</tspan></text>
+    <text x="56" y="340" class="sans" font-size="26" font-weight="700" fill="#ffa657">欲しいものが見当たらないなら、自分で作る。<tspan class="cursor" fill="#3fb950"> ▍</tspan></text>
   </g>
 </svg>

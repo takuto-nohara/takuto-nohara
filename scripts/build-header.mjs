@@ -26,8 +26,8 @@ const themes = {
 const MONO = "ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace";
 const SANS = "'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic UI', 'Meiryo', system-ui, sans-serif";
 
-const W = 840;
-const H = 340;
+const W = 720;
+const H = 380;
 
 function svg(t) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-labelledby="title desc">
@@ -48,7 +48,7 @@ function svg(t) {
   </style>
   <defs>
     <clipPath id="c1"><rect class="type" x="56" y="78" width="150" height="34"/></clipPath>
-    <clipPath id="c2"><rect class="type t2" x="56" y="232" width="240" height="34"/></clipPath>
+    <clipPath id="c2"><rect class="type t2" x="56" y="268" width="240" height="34"/></clipPath>
   </defs>
 
   <rect width="${W}" height="${H}" fill="${t.page}"/>
@@ -64,17 +64,18 @@ function svg(t) {
     <text x="56" y="104" class="mono" font-size="22"><tspan fill="${t.prompt}" font-weight="700">$</tspan><tspan fill="${t.text}"> whoami</tspan></text>
   </g>
   <g class="fade d1">
-    <text x="56" y="164" class="sans" font-size="46" font-weight="700" fill="${t.text}">${content.nameJa}<tspan dx="20" class="mono" font-size="26" font-weight="400" fill="${t.muted}">${content.nameEn}</tspan></text>
+    <text x="56" y="168" class="sans" font-size="50" font-weight="700" fill="${t.text}">${content.nameJa}<tspan dx="20" class="mono" font-size="26" font-weight="400" fill="${t.muted}">${content.nameEn}</tspan></text>
   </g>
   <g class="fade d2">
-    <text x="56" y="208" class="sans" font-size="22" fill="${t.text}">${content.role}<tspan fill="${t.muted}">　｜　${content.affiliation}</tspan></text>
+    <text x="56" y="210" class="sans" font-size="24" fill="${t.text}">${content.role}</text>
+    <text x="56" y="244" class="sans" font-size="20" fill="${t.muted}">${content.affiliation}</text>
   </g>
 
   <g clip-path="url(#c2)">
-    <text x="56" y="258" class="mono" font-size="22"><tspan fill="${t.prompt}" font-weight="700">$</tspan><tspan fill="${t.text}"> cat motto.txt</tspan></text>
+    <text x="56" y="294" class="mono" font-size="22"><tspan fill="${t.prompt}" font-weight="700">$</tspan><tspan fill="${t.text}"> cat motto.txt</tspan></text>
   </g>
   <g class="fade d3">
-    <text x="56" y="302" class="sans" font-size="24" font-weight="700" fill="${t.accent}">${content.motto}<tspan class="cursor" fill="${t.prompt}"> ▍</tspan></text>
+    <text x="56" y="340" class="sans" font-size="26" font-weight="700" fill="${t.accent}">${content.motto}<tspan class="cursor" fill="${t.prompt}"> ▍</tspan></text>
   </g>
 </svg>
 `;
