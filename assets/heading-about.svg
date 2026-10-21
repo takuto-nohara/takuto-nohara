@@ -3,6 +3,8 @@
   <style>
     .pop { transform-box: fill-box; transform-origin: 50% 80%; animation: pop .55s cubic-bezier(.34,1.7,.5,1) both, wave 4s ease-in-out 2s infinite; }
     .fade { animation: fade .5s ease-out both; }
+    .slide { animation: slide .6s cubic-bezier(.34,1.5,.5,1) both; }
+    @keyframes slide { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: none; } }
     .sway { transform-box: fill-box; transform-origin: center; animation: sway 5s ease-in-out infinite; }
     @keyframes sway { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
     .twinkle { transform-box: fill-box; transform-origin: center; animation: twinkle 2.4s ease-in-out infinite; }

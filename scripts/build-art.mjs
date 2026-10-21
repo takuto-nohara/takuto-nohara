@@ -128,6 +128,8 @@ function sparkle(cx, cy, r, fill, delay) {
 const STYLE = `<style>
     .pop { transform-box: fill-box; transform-origin: 50% 80%; animation: pop .55s cubic-bezier(.34,1.7,.5,1) both, wave 4s ease-in-out 2s infinite; }
     .fade { animation: fade .5s ease-out both; }
+    .slide { animation: slide .6s cubic-bezier(.34,1.5,.5,1) both; }
+    @keyframes slide { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: none; } }
     .sway { transform-box: fill-box; transform-origin: center; animation: sway 5s ease-in-out infinite; }
     @keyframes sway { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
     .twinkle { transform-box: fill-box; transform-origin: center; animation: twinkle 2.4s ease-in-out infinite; }
@@ -193,7 +195,53 @@ function heading(title, kana, color) {
   return svgDoc(W, H, `${title}（${kana}）`, body);
 }
 
+// ---------- 自己紹介 ----------
+// ラベル（がっこう など）の札。白抜き文字の角丸ステッカー
+function tag(text, x, y, size, fill) {
+  const w = measure(text, size, 1) + size * 1.1;
+  const h = size * 1.7;
+  const top = y - size * 1.22;
+  const rect = (attrs) => `<rect x="${x}" y="${top}" width="${w}" height="${h}" rx="${h / 2}" ${attrs}/>`;
+  const { paths } = glyphs(text, x + size * 0.55, y, size, 1);
+  return {
+    width: w,
+    svg: `${rect(`fill="${C.ink}" stroke="${C.ink}" stroke-width="10" transform="translate(2 5)"`)}
+    ${rect(`fill="${C.white}" stroke="${C.white}" stroke-width="10"`)}
+    ${rect(`fill="${fill}"`)}
+    ${paths.map((p) => `<path d="${p.full}" fill="${C.white}"/>`).join("")}`,
+  };
+}
+
+// 1 行 = ラベル + 文（強調したい語だけ青にする）
+function aboutRow(label, parts, y, delay) {
+  const size = 40;
+  const t = tag(label, 30, y, 26, C.amber);
+  let x = 30 + 175;
+  const segs = parts.map(([text, fill]) => {
+    const svg = sticker(text, { x, y, size, fill, outline: size * 0.18 });
+    x += measure(text, size) + 6;
+    return svg;
+  });
+  return {
+    width: x,
+    svg: `<g class="slide" style="animation-delay:${delay}s">${t.svg}${segs.join("")}</g>`,
+  };
+}
+
+function about() {
+  const rows = [
+    aboutRow("がっこう", [["工学院大学", C.night], ["の学生です", C.ink]], 72, 0.2),
+    aboutRow("しごと", [["株式会社Zequt", C.night], ["でWebアプリを作っています", C.ink]], 164, 0.5),
+    aboutRow("はじまり", [["動画編集", C.night], ["からものづくりを始めました", C.ink]], 256, 0.8),
+  ];
+  const W = Math.ceil(Math.max(...rows.map((r) => r.width)) + 30);
+  const H = 296;
+  const body = `<g transform="rotate(-1 ${W / 2} ${H / 2})">${rows.map((r) => r.svg).join("")}</g>`;
+  return svgDoc(W, H, "工学院大学の学生です。株式会社ZequtでWebアプリを作っています。動画編集からものづくりを始めました。", body);
+}
+
 const out = (name) => new URL(`../assets/${name}`, import.meta.url);
+writeFileSync(out("about.svg"), about());
 writeFileSync(out("kawaii-header.svg"), header());
 writeFileSync(out("heading-about.svg"), heading("About Me", "じこしょうかい", C.night));
 writeFileSync(out("heading-stack.svg"), heading("Tech Stack", "つかっているぎじゅつ", C.amber));

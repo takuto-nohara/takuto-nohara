@@ -2,15 +2,12 @@
   <img src="assets/kawaii-header.svg" alt="Takuto Nohara（のはら たくと）Web Developer ― 欲しいものは、自分で作る！" width="100%">
 </p>
 
+<img src="assets/kawaii/iam-programmer.png" alt="私はプログラマー！" align="right" height="90">
 <img src="assets/heading-about.svg" alt="About Me" height="64">
 
-<img src="assets/kawaii/iam-programmer.png" alt="私はプログラマー！" align="right" height="110">
-
-- 工学院大学の学生です
-- 株式会社Zequt で Webアプリを作っています
-- 動画編集からものづくりを始めました
-
-<br clear="right">
+<p align="center">
+  <img src="assets/about.svg" alt="工学院大学の学生です。株式会社ZequtでWebアプリを作っています。動画編集からものづくりを始めました。" width="92%">
+</p>
 
 <img src="assets/heading-stack.svg" alt="Tech Stack" height="64">
 
