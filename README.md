@@ -1,22 +1,18 @@
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/header-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="assets/header-light.svg">
-    <img src="assets/header-light.svg" alt="野原 拓人（Takuto Nohara）｜Webエンジニアをめざす大学生｜工学院大学 / 株式会社Zequt" width="100%">
-  </picture>
+  <img src="assets/kawaii-header.svg" alt="Takuto Nohara（のはら たくと）Web Developer ― 欲しいものは、自分で作る！" width="100%">
 </p>
 
-## 💫 About Me
+<img src="assets/heading-about.svg" alt="About Me" height="64">
 
 <img src="assets/kawaii/iam-programmer.png" alt="私はプログラマー！" align="right" height="110">
 
-- 🎓 工学院大学の学生です
-- 💼 株式会社Zequt で Webアプリを作っています
-- 🎬 動画編集からものづくりを始めました
+- 工学院大学の学生です
+- 株式会社Zequt で Webアプリを作っています
+- 動画編集からものづくりを始めました
 
 <br clear="right">
 
-## 💻 Tech Stack
+<img src="assets/heading-stack.svg" alt="Tech Stack" height="64">
 
 <p align="center">
   <img src="assets/kawaii/typescript.png" alt="TypeScript" height="60">
@@ -32,5 +28,5 @@
 </p>
 
 <p align="right">
-  <sub>Logos by <a href="https://github.com/SAWARATSUKI/KawaiiLogos">SAWARATSUKI / KawaiiLogos</a></sub>
+  <sub>Logos by <a href="https://github.com/SAWARATSUKI/KawaiiLogos">SAWARATSUKI / KawaiiLogos</a> ・ Font: <a href="https://fonts.google.com/specimen/Mochiy+Pop+One">Mochiy Pop One</a></sub>
 </p>
