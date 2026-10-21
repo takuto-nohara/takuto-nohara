@@ -14,14 +14,25 @@ if (!existsSync(FONT_PATH)) {
 }
 const font = opentype.loadSync(FONT_PATH.pathname.replace(/^\/([A-Z]:)/, "$1"));
 
-// アバターの夜空と月に合わせた配色
+// アイコン（夜空・三日月・星）に合わせた配色
 const C = {
-  ink: "#22305c",     // 影・小さい文字
-  orange: "#ff8a3d",  // メイン
-  yellow: "#ffc63d",
-  blue: "#4a7dff",
+  ink: "#0a2150",     // 夜空の紺: 影・小さい文字
+  sky: "#2f6fe0",     // 夜空の明るい青
+  moon: "#f5a43a",    // 三日月の琥珀色
+  star: "#ffd56b",    // 星の黄色
   white: "#ffffff",
+  night: "url(#night)", // 名前・見出し用の青グラデーション
+  amber: "url(#amber)",
 };
+
+const DEFS = `<defs>
+    <linearGradient id="night" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5c9bff"/><stop offset=".55" stop-color="#2f6fe0"/><stop offset="1" stop-color="#1b45a8"/>
+    </linearGradient>
+    <linearGradient id="amber" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffc35a"/><stop offset="1" stop-color="#ec8a24"/>
+    </linearGradient>
+  </defs>`;
 
 // 白フチ・影用に、文字の穴（o や a の内側）を除いた外側の輪郭だけを返す
 // TrueType は外側と内側で輪郭の向きが逆なので、面積の符号で見分ける
@@ -87,6 +98,23 @@ function sticker(text, { x, y, size, fill, spacing = 0, outline, shadow, anim = 
   </g>`;
 }
 
+// アイコンと同じ三日月（外側の円から内側の円をくり抜いた形）
+function crescent(cx, cy, r, delay) {
+  const ix = cx + r * 0.42;
+  const iy = cy - r * 0.3;
+  const ir = r * 0.82;
+  const d = `M${cx + r} ${cy}A${r} ${r} 0 1 1 ${cx - r} ${cy}A${r} ${r} 0 1 1 ${cx + r} ${cy}Z`;
+  const hole = `M${ix + ir} ${iy}A${ir} ${ir} 0 1 0 ${ix - ir} ${iy}A${ir} ${ir} 0 1 0 ${ix + ir} ${iy}Z`;
+  return `<g class="sway" style="animation-delay:${delay}s">
+    <mask id="moon-cut"><rect x="${cx - r * 2}" y="${cy - r * 2}" width="${r * 4}" height="${r * 4}" fill="#fff"/><path d="${hole}" fill="#000"/></mask>
+    <g mask="url(#moon-cut)">
+      <path d="${d}" fill="${C.ink}" stroke="${C.ink}" stroke-width="${r * 0.5}" transform="translate(3 6)"/>
+      <path d="${d}" fill="${C.white}" stroke="${C.white}" stroke-width="${r * 0.5}"/>
+      <path d="${d}" fill="${C.amber}"/>
+    </g>
+  </g>`;
+}
+
 // 4 方向にとがったキラキラ
 function sparkle(cx, cy, r, fill, delay) {
   const k = r * 0.28;
@@ -100,6 +128,8 @@ function sparkle(cx, cy, r, fill, delay) {
 const STYLE = `<style>
     .pop { transform-box: fill-box; transform-origin: 50% 80%; animation: pop .55s cubic-bezier(.34,1.7,.5,1) both, wave 4s ease-in-out 2s infinite; }
     .fade { animation: fade .5s ease-out both; }
+    .sway { transform-box: fill-box; transform-origin: center; animation: sway 5s ease-in-out infinite; }
+    @keyframes sway { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
     .twinkle { transform-box: fill-box; transform-origin: center; animation: twinkle 2.4s ease-in-out infinite; }
     @keyframes pop { from { transform: scale(0) rotate(-12deg); opacity: 0; } to { transform: none; opacity: 1; } }
     @keyframes wave { 0%, 12%, 100% { transform: none; } 6% { transform: translateY(-10%) rotate(-4deg); } }
@@ -112,6 +142,7 @@ function svgDoc(w, h, title, body) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="${title}">
   <title>${title}</title>
   ${STYLE}
+  ${DEFS}
   ${body}
 </svg>
 `;
@@ -129,19 +160,21 @@ function header() {
   const ny = 250;
 
   const body = `<g transform="rotate(-4 ${W / 2} ${H / 2})">
-    ${sticker("</>", { x: nx - 10, y: ny - 128, size: 46, fill: C.blue, anim: "pop", delay: 0.1 })}
+    ${sticker("</>", { x: nx - 10, y: ny - 128, size: 46, fill: C.amber, anim: "pop", delay: 0.1 })}
     ${sticker("のはら たくと", { x: nx + 120, y: ny - 128, size: 40, fill: C.ink, spacing: 2, anim: "pop", delay: 0.2, step: 0.05 })}
-    ${sticker(name, { x: nx, y: ny, size: nameSize, fill: C.orange, spacing: nameSpacing, anim: "pop", delay: 0.5, step: 0.07 })}
+    ${sticker(name, { x: nx, y: ny, size: nameSize, fill: C.night, spacing: nameSpacing, anim: "pop", delay: 0.5, step: 0.07 })}
     <g class="fade" style="animation-delay:1.5s">
-      ${sticker("Web Developer", { x: nx + 10, y: ny + 80, size: 40, fill: C.blue })}
+      ${sticker("Web Developer", { x: nx + 10, y: ny + 80, size: 40, fill: C.amber })}
     </g>
     <g class="fade" style="animation-delay:1.8s">
       ${sticker("欲しいものは、自分で作る！", { x: nx + nameW - measure("欲しいものは、自分で作る！", 34) - 10, y: ny + 128, size: 34, fill: C.ink })}
     </g>
   </g>
-  ${sparkle(W - 70, 60, 26, C.yellow, 0)}
-  ${sparkle(W - 30, 120, 14, C.orange, 0.8)}
-  ${sparkle(40, 390, 18, C.yellow, 1.4)}`;
+  ${crescent(W - 90, 78, 44, 0)}
+  ${sparkle(W - 170, 40, 16, C.star, 0.4)}
+  ${sparkle(W - 30, 160, 13, C.star, 1.1)}
+  ${sparkle(40, 390, 18, C.star, 1.6)}
+  ${sparkle(90, 60, 11, C.star, 0.9)}`;
   return svgDoc(W, H, "Takuto Nohara（のはら たくと）Web Developer 欲しいものは、自分で作る！", body);
 }
 
@@ -162,6 +195,6 @@ function heading(title, kana, color) {
 
 const out = (name) => new URL(`../assets/${name}`, import.meta.url);
 writeFileSync(out("kawaii-header.svg"), header());
-writeFileSync(out("heading-about.svg"), heading("About Me", "じこしょうかい", C.orange));
-writeFileSync(out("heading-stack.svg"), heading("Tech Stack", "つかっているぎじゅつ", C.blue));
+writeFileSync(out("heading-about.svg"), heading("About Me", "じこしょうかい", C.night));
+writeFileSync(out("heading-stack.svg"), heading("Tech Stack", "つかっているぎじゅつ", C.amber));
 console.log("done");
